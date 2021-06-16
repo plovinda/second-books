@@ -1,0 +1,26 @@
+{% extends('base.html.twig') %}
+{% block body %}
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <td>Title</td>
+                <td>Description</td>
+                <td>ISBN</td>
+                <td>Author</td>
+                <td>Price</td>
+                <td>Category</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td> {{ book.title }} </td>
+                <td> {{ book.description }} </td>
+                <td> {{ book.ISBN }} </td>
+                <td> {{ book.author }} </td>
+                <td> {{ book.price }}.Eur </td>
+                <td> {{ book.category }} </td>
+                <img src="{{ '/uploads/'~ book.bookImage }}" alt="{{ book.title }}.img" width="50" height="60">
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

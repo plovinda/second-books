@@ -1,0 +1,47 @@
+{% extends('base.html.twig') %}
+{% block body %}
+    {% set i=1 %}
+    {% if cart is not defined %}
+        <h2>The cart is empty</h2>
+    {% else %}
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <td>Sl no.</td>
+            <td>Book Name (Book ID)</td>
+            <td>Base Price</td>
+            <td>Quantity</td>
+            <td>Total Price</td>
+            <td>Action</td>
+        </tr>
+        </thead>
+        <tbody>
+                {% set cartEntries = cart.getCartEntry %}
+                    {% for entry in cartEntries %}
+                         <tr>
+                            <td>
+                                {{ i }}
+                            </td>
+                            <td>
+                                {{ entry.getBookId[0].getTitle}} ({{ entry.getBookId[0].getId }})
+                            </td>
+                            <td>
+                                {{ entry.basePrice }}
+                            </td>
+                            <td>
+                                {{ entry.quantity }}
+                            </td>
+                            <td>
+                                {{ entry.totalPrice }}
+                            </td>
+                             <td>
+                                 <a href="{{ path('remove.cart',{cartEntryId:entry.getId}) }}">Remove from cart</a>
+                             </td>
+                        </tr>
+
+                    {% endfor %}
+        {% endif %}
+                        <tr>Grand Total: {{cart.getTotalPrice}}</tr>
+        </tbody>
+    </table>
+{% endblock %}
